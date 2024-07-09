@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a New Transaction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar{
+            background-color: #0056b3;
+            width: 500px;
+        }
+        .container h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .navAmount{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="navbar"><h2>Add a New Transaction</h2> </div>
+    <div class="type">
+    <div class="form-group">
+        <label for="type">Type:</label>
+        <select id="type">
+            <option value="">Choose one</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+        </select>
+    </div>
+</div>
+
+    <!-- div for name/amount  div(namAmount)-->
+<div class="navAmount">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+    </div>
+    <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount">
+    </div>
+</div>
+
+    <div class="form-group">
+        <button onclick="addTransaction()">Add to transactions</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="transactionTable">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function addTransaction() {
+        const type = document.getElementById('type').value;
+        const name = document.getElementById('name').value;
+        const amount = document.getElementById('amount').value;
+
+        if (type === "" || name === "" || amount === "") {
+            alert("Please fill in all fields");
+            return;
+        }
+
+        const table = document.getElementById('transactionTable');
+        const row = table.insertRow();
+        row.insertCell(0).innerHTML = type;
+        row.insertCell(1).innerHTML = name;
+        row.insertCell(2).innerHTML = amount;
+
+        document.getElementById('type').value = "";
+        document.getElementById('name').value = "";
+        document.getElementById('amount').value = "";
+    }
+</script>
+
+</body>
+</html>
